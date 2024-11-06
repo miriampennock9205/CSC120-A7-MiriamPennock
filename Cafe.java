@@ -67,6 +67,34 @@ public class Cafe extends Building{
         this.nCups += nCups;
     }
 
+    @Override
+    public void showOptions() {
+        super.showOptions(); // Call the parent method
+        System.out.println(" + orderCoffee(size, nSugarPackets, nCreams)");
+        System.out.println(" + checkInventory()");
+    }
+
+   
+    @Override
+    public void goToFloor(int n) {
+        System.out.println("Going to floor " + n + " in the cafe.");
+    }
+
+    // Overloading methods - examples
+    public void orderCoffee(String type) {
+        System.out.println("Ordering a " + type + " coffee.");
+    }
+
+    public void orderCoffee(String type, int size) {
+        System.out.println("Ordering a " + size + "oz " + type + " coffee.");
+    }
+
+    public void orderCoffee(String type, int size, int nSugarPackets, int nCreams) {
+        System.out.println("Ordering a " + size + "oz " + type + " coffee with " + nSugarPackets + " sugar packets and " + nCreams + " creams.");
+    }
+
+
+
     /**
      * Tests the functionality of the Cafe class methods.
      * 

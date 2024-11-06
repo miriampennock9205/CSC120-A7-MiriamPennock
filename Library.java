@@ -73,6 +73,13 @@ public class Library extends Building {
       }
     }
 
+    @Override
+    public void showOptions() {
+        super.showOptions(); // Call the parent method
+        System.out.println(" + borrowBook(title)");
+        System.out.println(" + checkLibraryHours()");
+    }
+
     /**
      * Tests the functionality of the Library class methods.
      * 

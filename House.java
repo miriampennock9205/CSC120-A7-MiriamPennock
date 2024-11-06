@@ -57,6 +57,7 @@ public class House extends Building{
     }
   }
 
+
   /**
    * Moves a person out of the house, removing them from the residents list.
    * If the person is not a resident, a message is printed instead.
@@ -72,6 +73,13 @@ public class House extends Building{
       System.out.println(name + " is not a resident.");
       return null;
     }
+  }
+
+  @Override
+  public void showOptions() {
+      super.showOptions(); // Call the parent method
+      System.out.println(" + viewRoomAssignments()");
+      System.out.println(" + participateInHouseEvents()");
   }
 
   /**
