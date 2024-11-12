@@ -1,20 +1,30 @@
+
 /**
  * Represents a cafe with inventory for coffee, sugar, cream and cups.
  * Extends the Building class
  */
-public class Cafe extends Building{
-    /**The number of ounces of coffee in stock*/
+public class Cafe extends Building {
+
+    /**
+     * The number of ounces of coffee in stock
+     */
     private int nCoffeeOunces;
-    /** The number of sugar packets in stock */
+    /**
+     * The number of sugar packets in stock
+     */
     private int nSugarPackets;
-    /** The number of "splashes" of cream in stock */
+    /**
+     * The number of "splashes" of cream in stock
+     */
     private int nCreams;
-    /** The number of cups in stock */
-    private int nCups; 
+    /**
+     * The number of cups in stock
+     */
+    private int nCups;
 
     /**
      * Constructs a Cafe object with specified inventory levels.
-     * 
+     *
      * @param name The name of the cafe
      * @param address The address of the cafe
      * @param nFloors The number of floors in the cafe building
@@ -32,10 +42,20 @@ public class Cafe extends Building{
         System.out.println("You have built a cafe: ☕");
     }
 
+    public Cafe(String name, String address) {
+        this(name, address, 1, 1000, 500, 200, 300);  // Default stock levels
+    }
+
+    @Override
+    public void showOptions() {
+        super.showOptions();
+        System.out.println(" + sellCoffee() \n + restock()");
+    }
+
     /**
-     * Sells a coffee with a specified size, sugar packets, and cream, updating inventory.
-     * If inventory is insufficient, prints an error message.
-     * 
+     * Sells a coffee with a specified size, sugar packets, and cream, updating
+     * inventory. If inventory is insufficient, prints an error message.
+     *
      * @param size The size of the coffee in ounces
      * @param nSugarPackets The number of sugar packets requested
      * @param nCreams The number of cream splashes requested
@@ -51,10 +71,25 @@ public class Cafe extends Building{
             System.out.println("Cannot complete sale: not enough stock.");
         }
     }
-    
+
+    // Overloaded sellCoffee to sell by type
+    public void sellCoffee(String type) {
+        if (type.equalsIgnoreCase("espresso")) {
+            sellCoffee(2, 1, 1);
+        } else if (type.equalsIgnoreCase("latte")) {
+            sellCoffee(8, 2, 3);
+        }
+    }
+
+    @Override
+    public void goToFloor(int floor) {
+        System.out.println("This cafe doesn't have more than one floor for guests. Enjoy what is on this floor.");
+    }
+
     /**
-     * Restocks the cafe's inventory by adding specfied amounts of coffee, sugar, cream, and cups.
-     * 
+     * Restocks the cafe's inventory by adding specfied amounts of coffee,
+     * sugar, cream, and cups.
+     *
      * @param nCoffeeOunces The number of coffee ounces to add
      * @param nSugarPackets The number of sugar packets to add
      * @param nCreams The number of cream splashes to add
@@ -67,44 +102,29 @@ public class Cafe extends Building{
         this.nCups += nCups;
     }
 
-    @Override
-    public void showOptions() {
-        super.showOptions(); // Call the parent method
-        System.out.println(" + orderCoffee(size, nSugarPackets, nCreams)");
-        System.out.println(" + checkInventory()");
+    /**
+     * Restocks the cafe's inventory by adding the same amount to each item.
+     *
+     * @param quantity The amount to add to each inventory item
+     */
+    private void restock(int quantity) {
+        this.nCoffeeOunces += quantity;
+        this.nSugarPackets += quantity;
+        this.nCreams += quantity;
+        this.nCups += quantity;
+        System.out.println("Restocked all items by " + quantity + " units.");
     }
-
-   
-    @Override
-    public void goToFloor(int n) {
-        System.out.println("Going to floor " + n + " in the cafe.");
-    }
-
-    // Overloading methods - examples
-    public void orderCoffee(String type) {
-        System.out.println("Ordering a " + type + " coffee.");
-    }
-
-    public void orderCoffee(String type, int size) {
-        System.out.println("Ordering a " + size + "oz " + type + " coffee.");
-    }
-
-    public void orderCoffee(String type, int size, int nSugarPackets, int nCreams) {
-        System.out.println("Ordering a " + size + "oz " + type + " coffee with " + nSugarPackets + " sugar packets and " + nCreams + " creams.");
-    }
-
-
 
     /**
      * Tests the functionality of the Cafe class methods.
-     * 
+     *
      * @param args Command line arguments (not used)
      */
     public static void main(String[] args) {
-    
+
         //Create a new Cafe object with inital stock
         Cafe myCafe = new Cafe("Campus Cafe", "100 Green St, Northampton, MA", 1, 100, 50, 30, 20);
-       
+
         //Test toString method from Building class
         System.out.println(myCafe);
 
@@ -127,7 +147,8 @@ public class Cafe extends Building{
         System.out.println("Sugar Packets: " + myCafe.nSugarPackets);
         System.out.println("Creams: " + myCafe.nCreams);
         System.out.println("Cups: " + myCafe.nCups);
+        myCafe.goToFloor(2);
 
     }
-    
+
 }
