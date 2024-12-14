@@ -1,12 +1,18 @@
 
 import java.util.ArrayList;
-
+/**
+ * Represents a map of the campus, containing various buildings.
+ * Provides functionality to add and remove buildings,
+ * display a directory, and demonstrate subclass-specific methods.
+ */
 public class CampusMap {
 
     ArrayList<Building> buildings;
 
-    /* Default constructor, initializes empty ArrayList */
-    public CampusMap() {
+    /**
+    * Constructs an empty campus map.
+    * Initializes an empty list of buildings.
+    */    public CampusMap() {
         buildings = new ArrayList<Building>();
     }
 
@@ -34,6 +40,12 @@ public class CampusMap {
         return b;
     }
 
+    /**
+    * Returns a string representation of the campus map, 
+    * including a directory of all buildings and their addresses.
+    *
+    * @return A formatted string of the campus map.
+    */
     public String toString() {
         String mapString = "DIRECTORY of BUILDINGS";
 
@@ -43,6 +55,13 @@ public class CampusMap {
         return mapString;
     }
 
+    /**
+     * Demonstrates the functionality of the CampusMap class,
+     * including adding buildings, using subclass-specific methods, 
+    * and displaying a directory of buildings.
+    *
+    * @param args Command line arguments (not used).
+    */
     public static void main(String[] args) {
         CampusMap myMap = new CampusMap();
 

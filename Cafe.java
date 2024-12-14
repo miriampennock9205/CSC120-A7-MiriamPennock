@@ -42,10 +42,21 @@ public class Cafe extends Building {
         System.out.println("You have built a cafe: ☕");
     }
 
+    /**
+     * Constructs a cafe object with a default number of floors and default
+     * stock levels.
+     *
+     * @param name The name of the cafe
+     * @param address The address of the cafe
+     */
     public Cafe(String name, String address) {
         this(name, address, 1, 1000, 500, 200, 300);  // Default stock levels
     }
 
+    /**
+     * Displays the available options for the Cafe, including options from the
+     * superclass and additional Cafe-specific options.
+     */
     @Override
     public void showOptions() {
         super.showOptions();
@@ -81,9 +92,16 @@ public class Cafe extends Building {
         }
     }
 
+    /**
+    * Overrides the goToFloor method to indicate that the Cafe does not have multiple floors
+    * accessible to guests. This method throws an exception to prevent the invalid operation.
+    *
+    * @param floor The floor number (ignored in this implementation)
+    * @throws UnsupportedOperationException if an attempt is made to access a different floor
+    */
     @Override
     public void goToFloor(int floor) {
-        System.out.println("This cafe doesn't have more than one floor for guests. Enjoy what is on this floor.");
+        throw new UnsupportedOperationException("This cafe doesn't have more than one floor for guests.");
     }
 
     /**

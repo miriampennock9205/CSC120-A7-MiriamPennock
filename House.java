@@ -55,7 +55,7 @@ public class House extends Building {
 
     @Override
     public void goToFloor(int floor) {
-        if (hasElevator || floor == 1) {
+        if (hasElevator || floor == (this.activeFloor + 1) || floor == (this.activeFloor - 1)) {
             super.goToFloor(floor);
         } else {
             System.out.println("No elevator available. Move to adjacent floors only.");
